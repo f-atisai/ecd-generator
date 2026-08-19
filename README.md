@@ -4,7 +4,9 @@
 
 ECD Generator (Edit Checks and Derivations Generator) is a clinical study-build automation tool that generates structured UAT validation scripts from a Medidata Rave Architect Loader Spreadsheet (ALS).
 
-The application interprets study-build metadata and produces a standardized Excel validation workbook covering key programmed behavior within a Rave study.
+The project was inspired by seeing a similar automation approach used in another clinical data environment. Recognizing that the same general concept could improve a manual UAT-preparation workflow in my organization, I independently designed and developed ECD Generator for that context.
+
+The application interprets study-build information and produces a standardized Excel validation workbook covering key programmed behavior within a Rave study.
 
 During testing, a process that typically required approximately **one working day of manual preparation was completed in less than three minutes**.
 
@@ -18,15 +20,27 @@ Preparing UAT scripts for a clinical study build requires Data Management to tra
 
 The existing process required a Lead Data Manager to review the study's edit check specification and manually prepare a validation workbook. This involved:
 
-* identifying study logic requiring validation;
-* determining appropriate validation scenarios;
-* preparing test-script content;
-* organizing scripts into the required validation categories; and
-* preparing the workbook for peer review and UAT execution.
+- identifying study logic requiring validation;
+- determining appropriate validation scenarios;
+- preparing test-script content;
+- organizing scripts into the required validation categories; and
+- preparing the workbook for peer review and UAT execution.
 
 For studies containing a substantial number of programmed checks, preparing the validation workbook could require approximately one working day.
 
-The structured and repetitive nature of this workflow presented an opportunity for automation.
+The structured and repetitive nature of this workflow made it a strong candidate for automation.
+
+---
+
+## Inspiration and Approach
+
+The underlying automation concept was not something I originated.
+
+I had seen a similar approach used successfully in another clinical data environment and recognized that the same general idea could potentially address the manual UAT-preparation workflow in my organization.
+
+ECD Generator was my independent implementation of that concept.
+
+The challenge was therefore not to reproduce another organization's system, but to determine how the general automation approach could be adapted to our own Rave study-build and validation workflow and then design and implement a solution for that environment.
 
 ---
 
@@ -36,9 +50,9 @@ ECD Generator uses the **Medidata Rave Architect Loader Spreadsheet (ALS)** as i
 
 The user provides:
 
-* the study ALS;
-* the protocol number; and
-* the required ECD version.
+- the study ALS;
+- the protocol number; and
+- the required ECD version.
 
 For example:
 
@@ -71,11 +85,11 @@ Organizes generated validation content into defined categories based on the type
 
 ### Automated Validation Content Preparation
 
-Generates structured validation content for applicable study logic using the information available within the study build.
+Generates structured validation content for applicable study logic using information available within the study build.
 
 ### Standardized Workbook Generation
 
-Produces validation content in a predefined Excel workbook designed specifically for the ECD workflow.
+Produces validation content in a predefined Excel workbook designed for the ECD workflow.
 
 ### Cross-Study Reusability
 
@@ -87,18 +101,18 @@ Uses a common generation workflow across compatible Rave study builds rather tha
 
 ECD Generator produces a single Excel workbook containing six validation categories.
 
-| Worksheet              | Purpose                                                                           |
-| ---------------------- | --------------------------------------------------------------------------------- |
-| **Validation Scripts** | Edit checks programmed to validate data entered on study CRFs                     |
-| **Matrix Scripts**     | Logic controlling visit workflow and the population of forms within study folders |
-| **Screen Dynamics**    | Logic controlling dynamic form behavior, including field visibility               |
-| **Derivations**        | Data derivations implemented using the Rave Derivation Builder                    |
-| **Custom Functions**   | Edit checks that trigger custom functions                                         |
-| **System Checks**      | Field-level required-data, data-conformance, and future-date checks               |
+| Worksheet | Purpose |
+| --- | --- |
+| **Validation Scripts** | Edit checks programmed to validate data entered on study CRFs |
+| **Matrix Scripts** | Logic controlling visit workflow and the population of forms within study folders |
+| **Screen Dynamics** | Logic controlling dynamic form behavior, including field visibility |
+| **Derivations** | Data derivations implemented using the Rave Derivation Builder |
+| **Custom Functions** | Edit checks that trigger custom functions |
+| **System Checks** | Field-level required-data, data-conformance, and future-date checks |
 
 ![Generated ECD validation workbook](screenshots_and_demo/generated-workbook.png)
 
-*Generated ECD workbook showing the validation categories produced from synthetic study metadata.*
+*Generated ECD workbook showing the validation categories produced from synthetic study information.*
 
 Together, these worksheets provide a structured validation artifact covering key programmed behavior within the study build.
 
@@ -172,8 +186,8 @@ The purpose of the automation was not to remove human review. It was designed to
 
 ECD Generator was designed primarily for:
 
-* **Data Managers** involved in study-build validation activities; and
-* **Peer Reviewers / EDC Developers** responsible for reviewing the study build and associated validation coverage.
+- **Data Managers** involved in study-build validation activities; and
+- **Peer Reviewers / EDC Developers** responsible for reviewing the study build and associated validation coverage.
 
 ---
 
@@ -181,27 +195,31 @@ ECD Generator was designed primarily for:
 
 ECD Generator was developed using:
 
-* **Python**
-* **Pandas**
-* **Streamlit**
-* **openpyxl**
-* **Microsoft Excel**
+- **Python**
+- **Pandas**
+- **Streamlit**
+- **openpyxl**
+- **Microsoft Excel**
 
 ---
 
 ## My Role
 
-I designed and developed ECD Generator end to end.
+ECD Generator was inspired by a similar automation approach I had seen used in another clinical data environment.
+
+I recognized that the concept could be adapted to improve the UAT-preparation workflow in my organization and independently designed and developed an implementation for that environment.
 
 My responsibilities included:
 
-* identifying the automation opportunity;
-* defining the application requirements and workflow;
-* designing the validation workbook;
-* designing and implementing the study-build processing and generation approach;
-* developing the Streamlit interface;
-* implementing Excel workbook generation; and
-* testing the application against multiple Rave studies.
+- assessing how the automation concept could be applied to the existing workflow;
+- defining the application requirements and user workflow;
+- designing the validation workbook;
+- designing and implementing the study-build processing and generation approach;
+- developing the Streamlit interface;
+- implementing Excel workbook generation; and
+- testing the application against multiple Rave studies.
+
+The implementation was developed independently based on the general automation concept rather than another organization's source code or proprietary implementation.
 
 ---
 
@@ -213,7 +231,7 @@ The application was not incorporated into the organization's operational study-b
 
 At the time of development, the organization's study-build procedures had recently undergone significant updates. Introducing the application would have required another round of process and procedural changes, and the existing workflow was retained.
 
-The completed project nevertheless demonstrated the feasibility of replacing a substantial manual UAT-preparation activity with a reusable automated workflow.
+The completed project nevertheless demonstrated the feasibility of applying an established automation concept to the organization's Rave validation workflow and replacing a substantial manual UAT-preparation activity with a reusable automated process.
 
 ---
 
@@ -240,12 +258,13 @@ The production source code, generation rules, transformation logic, and implemen
 
 This repository is intended to demonstrate:
 
-* the clinical workflow problem addressed;
-* the application's purpose and user experience;
-* its place within the study-build validation workflow;
-* the technologies used;
-* representative outputs; and
-* the demonstrated impact of the automation.
+- the clinical workflow problem addressed;
+- how an existing automation concept was independently adapted to that problem;
+- the application's purpose and user experience;
+- its place within the study-build validation workflow;
+- the technologies used;
+- representative outputs; and
+- the demonstrated impact of the automation.
 
 Public materials contain no proprietary study data, sponsor information, production study identifiers, confidential organizational assets, or production implementation logic.
 
